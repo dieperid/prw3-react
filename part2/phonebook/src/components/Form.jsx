@@ -8,18 +8,10 @@ const Form = ({
   return (
     <form onSubmit={onSubmit}>
       <div>
-        name:{" "}
-        <input
-          value={newName}
-          onChange={(event) => handleNameChange(event.target.value)}
-        />
+        name: <input value={newName} onChange={handleNameChange} />
       </div>
       <div>
-        number:{" "}
-        <input
-          value={newNumber}
-          onChange={(event) => handleNumberChange(event.target.value)}
-        />
+        number: <input value={newNumber} onChange={handleNumberChange} />
       </div>
       <div>
         <button type="submit">add</button>
