@@ -45,13 +45,18 @@ const App = () => {
       number: newNumber,
     };
 
-    personService.create(personObject).then((data) => {
-      setPersons(persons.concat(data));
-      setMessage(`Added ${newName}`);
-      setTimeout(() => {
-        setMessage(false);
-      }, 3000);
-    });
+    personService
+      .create(personObject)
+      .then((data) => {
+        setPersons(persons.concat(data));
+        setMessage(`Added ${newName}`);
+        setTimeout(() => {
+          setMessage(false);
+        }, 3000);
+      })
+      .catch((error) => {
+        setMessage(`Error: ${error.response.data.error}`);
+      });
 
     setNewName("");
     setNewNumber("");
