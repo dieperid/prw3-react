@@ -125,6 +125,26 @@ app.delete("/api/persons/:id", async (request, response, next) => {
   }
 });
 
+app.put("/api/persons/:id", async (request, response, next) => {
+  try {
+    const { name, number } = request.body;
+
+    const updatedPerson = await Person.findByIdAndUpdate(
+      request.params.id,
+      { name, number },
+      { new: true, runValidators: true, context: "query" },
+    );
+
+    if (updatedPerson) {
+      return response.json(updatedPerson);
+    }
+
+    return response.status(404).end();
+  } catch (error) {
+    return next(error);
+  }
+});
+
 app.post("/api/persons", async (request, response, next) => {
   try {
     const body = request.body;
